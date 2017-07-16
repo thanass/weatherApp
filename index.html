@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>weatherApp</title>
+	
+	<!-- Bootstrap - for styling purposes only -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+	<div id="loader"></div>
+	<script>
+		document.onreadystatechange = function () {
+					var state = document.readyState;
+					if (state == 'interactive') {
+						document.getElementById('loader').style.visibility="visible";
+					} else if (state == 'complete') {
+						setTimeout(function(){
+							//document.getElementById('interactive');
+							document.getElementById('loader').style.visibility="hidden";
+							//document.getElementById('contents').style.visibility="visible";
+						},500);
+					}
+				}
+	</script>
+	<div id="header" class="header">
+	<span class="glyphicon glyphicon-menu-hamburger menu" aria-hidden="true"></span>
+	<span class="glyphicon glyphicon-heart favor" aria-hidden="true"></span>
+	</div>
+	<div id="sidebar" class="sidebar-menu">
+		<div class="social">
+			<div><span>suggest to a friend</span></div>
+			<div><span><a href="#" class="fa fa-facebook"></a></span></div>
+		</div>
+	</div>
+	<div class="container content-wrapper">
+		
+		<h1 id="placename" class="text-center title hidden">Weather Conditions</h1>
+			<div  id="search-wrapper" class="container">
+				<div class="row weather-finder">
+					<div class="col-lg-12">
+						<div class="input-group">
+							<input type="text" id="weatherpoint" class="form-control" placeholder="Type here your location...">
+							<span class="input-group-btn">
+								<button id="search" class="btn btn-default" onclick="showeather()" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+							</span>
+						</div>
+						<button id="locator" type="button" class="btn btn-default btn-lg location-decect"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"> access location</button>
+					</div>
+				</div>
+			</div>
+
+		<div id="forecast-wrapper" class="container">
+			<div class="row">
+				<div id="weather-widget-wrapper">
+					<div class="current-widget col-xs-12">
+						<h2 class="area-title">Today
+						<small class="area-title-small"></small></h2>
+						<div id="current"></div>
+					</div>
+					<div class="forecast-widget col-xs-12">
+						<h2 class="hidden">Forecast</h2>
+						<div class="forecast-list-wrapper">
+							<ul id="forecast"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+	</div>
+			
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="weather.js"></script>
+		<script>
+			$(document).ready(function() {
+				var sidebarHeight = $(window).height() - $("#header").outerHeight(true);
+				//console.log(sidebarHeight);
+				$("#sidebar").css("height", sidebarHeight);
+				$("#header .menu ").click(function() {
+					$("#sidebar").toggle();
+					if ($(this).hasClass("glyphicon-remove")) {
+						$(this).removeClass("glyphicon-remove").addClass("glyphicon-menu-hamburger");
+					}
+					else {
+						$(this).removeClass("glyphicon-menu-hamburger").addClass("glyphicon-remove");
+					}
+				});
+				$("#header .favor")
+			});
+		</script>
+	</body>
+</html>
